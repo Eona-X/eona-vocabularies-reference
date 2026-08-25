@@ -724,6 +724,8 @@ emds:sourceCode a rdf:Property ;
     rdfs:comment "Code (spreadsheet column A value) this term was extracted from, for traceability."@en .
 
 emds:group a rdf:Property ;
+    rdfs:domain odrl:LeftOperand ;
+    rdfs:range emds:ParticipantCredentialClaim ;
     rdfs:comment "Sub-grouping of related LeftOperand terms (e.g. participant-credential-claim)."@en .
 
 emds:hasConceptScheme a rdf:Property ;
