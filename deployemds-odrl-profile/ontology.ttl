@@ -1,0 +1,730 @@
+@prefix emds: <https://w3id.org/deployemds/odrl-profile#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#
+# deployEMDS ODRL Profile
+#
+# PROVISIONAL NAMESPACE. https://w3id.org/deployemds/odrl-profile# has not been
+# registered - replace with the EMDS/DSSC-assigned namespace before external use.
+#
+# Generated from deployEMDS Usage Policy options_IDF.xlsx (WP2/WP3 use-case feedback
+# template). Every term below traces back to one spreadsheet row via emds:sourceCode
+# and emds:sourceSheet. See ../data/policy-options.json for the full source table
+# (definitions, enforcement point, status, reviewer comments).
+#
+# Term-typing rule (see odrl-profile/deployemds-odrl-profile.md for rationale):
+#   - Sheets that are closed classifications checked BY a Constraint (Purpose,
+#     Confidential info, Data protection category, Fees model) become one
+#     odrl:LeftOperand per sheet, with each row as a skos:Concept value in its
+#     skos:ConceptScheme (candidate odrl:rightOperand values).
+#   - Sheets that are things a party DOES (Data security, Restrictions, Usage
+#     rights, and the obligation-shaped rows of Access policy / Data protection /
+#     IPR) become one odrl:Action subclass per row.
+#   - Access Policy's four DataspaceParticipantCredential claims become
+#     odrl:LeftOperand terms; the five VC-claim operators the sheet lists
+#     (eq, haspart, isnoneof, ispartof, neq) already exist as core ODRL
+#     Operator terms (odrl:eq, odrl:hasPart, odrl:isNoneOf, odrl:isPartOf,
+#     odrl:neq) so this profile defines no new Operators.
+#
+
+emds: a owl:Ontology ;
+    dcterms:title "deployEMDS ODRL Profile"@en ;
+    dcterms:description "ODRL 2.2 profile for the proto-EMDS access and usage policies drafted by deployEMDS WP2/WP3, extending the W3C ODRL Profile: Data Spaces vocabulary with mobility-data-space-specific actions, left operands and constraint value schemes."@en ;
+    dcterms:source <https://acatechev.sharepoint.de/sites/EuropeanMobilityDataSpaceDeploymentConsortiumspace/> ;
+    owl:versionInfo "0.1.0" .
+
+# ── Access policy ──────────────────────────────────────────────────────
+
+emds:ParticipantCredentialClaim a rdfs:Class ;
+    rdfs:label "Participant Credential Claim"@en ;
+    rdfs:comment "Grouping for LeftOperand terms evaluated against a claim in the DataspaceParticipantCredential."@en .
+
+emds:legalName a odrl:LeftOperand ;
+    rdfs:label "Legal Name"@en ;
+    skos:definition "The policy implemented can check different conditions using the legalName set in the DataspaceParticipantCredential.\nThe conditions available are given by the different operands allowed, these  are:\n- eq: checks if the VC claim is the same as the one in the right operand\n- haspart: checks  if the VC claim contains a substring set in the right operand\n- isnoneof: checks if the VC claim is not present in the list set in the right operand \n- ispartof: checks if the VC claim is one of the values in the list set in the right operand\n- neq: checks if the VC claim is different from the one in the right operand"@en ;
+    emds:enforcementPoint "Connector"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:reviewStatus "Implemented"@en ;
+    emds:group emds:ParticipantCredentialClaim ;
+    rdfs:comment "Evaluated against the matching claim in the participant's DataspaceParticipantCredential (Verifiable Credential), using core ODRL operators odrl:eq, odrl:neq, odrl:hasPart, odrl:isPartOf or odrl:isNoneOf."@en ;
+    emds:sourceSheet "Access policy"@en ;
+    emds:sourceCode "legalName" .
+
+emds:website a odrl:LeftOperand ;
+    rdfs:label "Website"@en ;
+    skos:definition "The policy implemented can check different conditions using the website set in the DataspaceParticipantCredential.\nThe conditions available are given by the different operands allowed, these  are:\n- eq: checks if the VC claim is the same as the one in the right operand\n- haspart: checks  if the VC claim contains a substring set in the right operand\n- isnoneof: checks if the VC claim is not present in the list set in the right operand \n- ispartof: checks if the VC claim is one of the values in the list set in the right operand\n- neq: checks if the VC claim is different from the one in the right operand"@en ;
+    emds:enforcementPoint "Connector"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:reviewStatus "Implemented"@en ;
+    emds:group emds:ParticipantCredentialClaim ;
+    rdfs:comment "Evaluated against the matching claim in the participant's DataspaceParticipantCredential (Verifiable Credential), using core ODRL operators odrl:eq, odrl:neq, odrl:hasPart, odrl:isPartOf or odrl:isNoneOf."@en ;
+    emds:sourceSheet "Access policy"@en ;
+    emds:sourceCode "website" .
+
+emds:dataspaceId a odrl:LeftOperand ;
+    rdfs:label "Dataspace Id"@en ;
+    skos:definition "The policy implemented can check different conditions using the dataspaceId set in the DataspaceParticipantCredential.\nThe conditions available are given by the different operands allowed, these  are:\n- eq: checks if the VC claim is the same as the one in the right operand\n- haspart: checks  if the VC claim contains a substring set in the right operand\n- isnoneof: checks if the VC claim is not present in the list set in the right operand \n- ispartof: checks if the VC claim is one of the values in the list set in the right operand\n- neq: checks if the VC claim is different from the one in the right operand"@en ;
+    emds:enforcementPoint "Connector"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:reviewStatus "Implemented"@en ;
+    emds:group emds:ParticipantCredentialClaim ;
+    rdfs:comment "Evaluated against the matching claim in the participant's DataspaceParticipantCredential (Verifiable Credential), using core ODRL operators odrl:eq, odrl:neq, odrl:hasPart, odrl:isPartOf or odrl:isNoneOf."@en ;
+    emds:sourceSheet "Access policy"@en ;
+    emds:sourceCode "dataspaceId" .
+
+emds:participantType a odrl:LeftOperand ;
+    rdfs:label "Participant Type"@en ;
+    skos:definition "The policy implemented can check different conditions using the type set in the DataspaceParticipantCredential.\nThe conditions available are given by the different operands allowed, these  are:\n- eq: checks if the VC claim is the same as the one in the right operand\n- haspart: checks  if the VC claim contains a substring set in the right operand\n- isnoneof: checks if the VC claim is not present in the list set in the right operand \n- ispartof: checks if the VC claim is one of the values in the list set in the right operand\n- neq: checks if the VC claim is different from the one in the right operand"@en ;
+    emds:enforcementPoint "Connector"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:reviewStatus "Implemented"@en ;
+    emds:group emds:ParticipantCredentialClaim ;
+    rdfs:comment "Evaluated against the matching claim in the participant's DataspaceParticipantCredential (Verifiable Credential), using core ODRL operators odrl:eq, odrl:neq, odrl:hasPart, odrl:isPartOf or odrl:isNoneOf."@en ;
+    emds:sourceSheet "Access policy"@en ;
+    emds:sourceCode "type" .
+
+emds:sensitiveDataAuthorisation a odrl:LeftOperand ;
+    rdfs:label "Sensitive Data Restricted Access"@en ;
+    skos:definition "Data classified as personal, commercially sensitive, operationally critical, security-relevant, or otherwise restricted is available only to specifically authorised participants under enhanced controls."@en ;
+    emds:enforcementPoint "Connector"@en ;
+    emds:typicalRuleType "Prohibition" ;
+    emds:reviewStatus "Nice to have"@en ;
+    emds:sourceSheet "Access policy"@en ;
+    emds:sourceCode "sensitive-data-restricted-access" .
+
+emds:communityMembership a odrl:LeftOperand ;
+    rdfs:label "Community or Consortium Access"@en ;
+    skos:definition "Access is limited to members of a defined mobility ecosystem, consortium, public-private partnership, or data-sharing community."@en ;
+    emds:enforcementPoint "Connector"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:reviewStatus "Nice to have"@en ;
+    emds:sourceSheet "Access policy"@en ;
+    emds:sourceCode "community-or-consortium-access" .
+
+emds:AccessLogging a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Access Logging"@en ;
+    skos:definition "All access to the data must be logged."@en ;
+    emds:enforcementPoint "Connector"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:reviewStatus "Nice to have"@en ;
+    emds:sourceSheet "Access policy"@en ;
+    emds:sourceCode "access-logging" .
+
+# ── Data security (all data) ───────────────────────────────────────────
+
+emds:EncryptAtRest a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Encryption at Rest"@en ;
+    skos:definition "Data must be encrypted when stored."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data security (all data)"@en ;
+    emds:sourceCode "encryption-at-rest" .
+
+emds:EncryptInTransit a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Encryption in Transit"@en ;
+    skos:definition "Data must be encrypted during transmission."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data security (all data)"@en ;
+    emds:sourceCode "encryption-in-transit" .
+
+emds:EncryptEndToEnd a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "End-to-End Encryption"@en ;
+    skos:definition "Data must remain encrypted between sender and recipient."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data security (all data)"@en ;
+    emds:sourceCode "end-to-end-encryption" .
+
+# emds:AccessLogging already defined under Access policy above;
+# Data security sheet references the same action with enforcement = Legal contract.
+
+emds:MaintainAuditTrail a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Audit Trail"@en ;
+    skos:definition "Complete records of processing activities must be maintained for auditing."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data security (all data)"@en ;
+    emds:sourceCode "audit-trail" .
+
+emds:MaintainBackup a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Backup Required"@en ;
+    skos:definition "Secure backups must be maintained."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data security (all data)"@en ;
+    emds:sourceCode "backup-required" .
+
+emds:SecurelyDelete a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Secure Deletion"@en ;
+    skos:definition "Data must be securely erased at the end of the retention period."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data security (all data)"@en ;
+    emds:sourceCode "secure-deletion" .
+
+emds:OtherSecurityRequirement a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Other Security Requirement"@en ;
+    skos:definition "Another security requirement not covered above; requires additional specification."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data security (all data)"@en ;
+    emds:sourceCode "other" .
+
+# ── Confidential info (trade data) → emds:confidentialityLevel ────────
+
+emds:confidentialityLevel a odrl:LeftOperand ;
+    rdfs:label "Confidentiality Level"@en ;
+    rdfs:comment "Confidentiality classification of the target asset (Confidential info sheet)."@en ;
+    emds:hasConceptScheme emds:confidentialityLevelScheme .
+
+emds:confidentialityLevelScheme a skos:ConceptScheme ;
+    rdfs:label "Confidentiality Level values"@en .
+
+emds:Public a skos:Concept ;
+    skos:inScheme emds:confidentialityLevelScheme ;
+    skos:prefLabel "Public"@en ;
+    skos:definition "Data intended for unrestricted public access and use."@en ;
+    emds:sourceSheet "Confidential info (trade data)"@en ;
+    emds:sourceCode "public" .
+
+emds:Internal a skos:Concept ;
+    skos:inScheme emds:confidentialityLevelScheme ;
+    skos:prefLabel "Internal"@en ;
+    skos:definition "Data intended for use only within the receiving organisation."@en ;
+    emds:sourceSheet "Confidential info (trade data)"@en ;
+    emds:sourceCode "internal" .
+
+emds:Confidential a skos:Concept ;
+    skos:inScheme emds:confidentialityLevelScheme ;
+    skos:prefLabel "Confidential"@en ;
+    skos:definition "Data that must be protected from unauthorised disclosure and shared only with authorised parties."@en ;
+    emds:sourceSheet "Confidential info (trade data)"@en ;
+    emds:sourceCode "confidential" .
+
+# ── Data protection (personal data) ────────────────────────────────────
+
+emds:personalDataCategory a odrl:LeftOperand ;
+    rdfs:label "Personal Data Category"@en ;
+    rdfs:comment "Personal-data classification of the target asset (Data protection sheet)."@en ;
+    emds:hasConceptScheme emds:personalDataCategoryScheme .
+
+emds:personalDataCategoryScheme a skos:ConceptScheme ;
+    rdfs:label "Personal Data Category values"@en .
+
+emds:NotApplicable a skos:Concept ;
+    skos:inScheme emds:personalDataCategoryScheme ;
+    skos:prefLabel "Not Applicable"@en ;
+    skos:definition "The dataset does not contain personal data and no specific data protection requirements apply beyond general law."@en ;
+    emds:sourceSheet "Data protection (personal data)"@en ;
+    emds:sourceCode "not-applicable" .
+
+emds:PersonalData a skos:Concept ;
+    skos:inScheme emds:personalDataCategoryScheme ;
+    skos:prefLabel "Personal Data"@en ;
+    skos:definition "The dataset contains personal data and must be processed in accordance with applicable data protection legislation."@en ;
+    emds:sourceSheet "Data protection (personal data)"@en ;
+    emds:sourceCode "personal-data" .
+
+emds:SpecialCategoryData a skos:Concept ;
+    skos:inScheme emds:personalDataCategoryScheme ;
+    skos:prefLabel "Special Category Personal Data"@en ;
+    skos:definition "The dataset contains special categories of personal data requiring enhanced protection."@en ;
+    emds:sourceSheet "Data protection (personal data)"@en ;
+    emds:sourceCode "special-category-data" .
+
+emds:AnonymisedData a skos:Concept ;
+    skos:inScheme emds:personalDataCategoryScheme ;
+    skos:prefLabel "Anonymised Data"@en ;
+    skos:definition "The dataset must be irreversibly anonymised."@en ;
+    emds:sourceSheet "Data protection (personal data)"@en ;
+    emds:sourceCode "anonymised-data" .
+
+emds:PseudonymisedData a skos:Concept ;
+    skos:inScheme emds:personalDataCategoryScheme ;
+    skos:prefLabel "Pseudonymised Data"@en ;
+    skos:definition "The dataset has to be  pseudonymised and remains subject to data protection law."@en ;
+    emds:sourceSheet "Data protection (personal data)"@en ;
+    emds:sourceCode "pseudonymised-data" .
+
+emds:LimitToAuthorisedPurpose a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Purpose Limitation"@en ;
+    skos:definition "Data may only be processed for the authorised purpose(s)."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission", "Obligation" ;
+    emds:sourceSheet "Data protection (personal data)"@en ;
+    emds:sourceCode "purpose-limited" .
+
+emds:ApplyDataMinimisation a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Data Minimisation"@en ;
+    skos:definition "Processing must be limited to data that are adequate, relevant, and necessary."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "Data protection (personal data)"@en ;
+    emds:sourceCode "data-minimisation" .
+
+# ── IPR (all data) ─────────────────────────────────────────────────────
+
+emds:ipRightsStatus a odrl:LeftOperand ;
+    rdfs:label "IP Rights Status"@en ;
+    rdfs:comment "Intellectual-property rights regime applying to the target asset (IPR sheet)."@en ;
+    emds:hasConceptScheme emds:ipRightsStatusScheme .
+
+emds:ipRightsStatusScheme a skos:ConceptScheme ;
+    rdfs:label "IP Rights Status values"@en .
+
+emds:CopyrightProtected a skos:Concept ;
+    skos:inScheme emds:ipRightsStatusScheme ;
+    skos:prefLabel "Copyright"@en ;
+    skos:definition "The dataset is protected by copyright and can be used accordingly"@en ;
+    emds:sourceSheet "IPR (all data)"@en ;
+    emds:sourceCode "copyright" .
+
+emds:DatabaseRightProtected a skos:Concept ;
+    skos:inScheme emds:ipRightsStatusScheme ;
+    skos:prefLabel "Sui Generis Database Right"@en ;
+    skos:definition "Protected by database right."@en ;
+    emds:sourceSheet "IPR (all data)"@en ;
+    emds:sourceCode "database-right" .
+
+emds:RequireAttribution a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Attribution Required"@en ;
+    skos:definition "Use of the dataset requires acknowledgement of the rights holder."@en ;
+    emds:enforcementPoint "Legal contract "@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "IPR (all data)"@en ;
+    emds:sourceCode "attribution-required" .
+
+emds:RequireLicenceAcceptance a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Licence Required"@en ;
+    skos:definition "Use of the dataset requires acceptance of a licence or contractual terms."@en ;
+    emds:enforcementPoint "Legal contract "@en ;
+    emds:typicalRuleType "Obligation" ;
+    emds:sourceSheet "IPR (all data)"@en ;
+    emds:sourceCode "licence-required" .
+
+# ── Purpose → emds:purpose ─────────────────────────────────────────────
+
+emds:purpose a odrl:LeftOperand ;
+    rdfs:label "Purpose"@en ;
+    rdfs:comment "Purpose for which the data may be processed (Purpose sheet)."@en ;
+    emds:hasConceptScheme emds:purposeScheme .
+
+emds:purposeScheme a skos:ConceptScheme ;
+    rdfs:label "Purpose values"@en .
+
+emds:PublicService a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Public Service Provision"@en ;
+    skos:definition "Provision of mobility-related public services by public authorities or delegated entities."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "public-service" .
+
+emds:PublicPolicy a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Public Policy"@en ;
+    skos:definition "Policy development, regulation, monitoring and public administration."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "public-policy" .
+
+emds:TransportOperations a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Transport Operations"@en ;
+    skos:definition "Planning, scheduling and operation of passenger or freight transport services."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "transport-operations" .
+
+emds:TrafficManagement a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Traffic Management"@en ;
+    skos:definition "Monitoring, control and optimisation of transport networks and traffic flows."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "traffic-management" .
+
+emds:MultimodalServices a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Multimodal Mobility Services"@en ;
+    skos:definition "Journey planning, Mobility-as-a-Service (MaaS), ticketing and traveller information."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "multimodal-services" .
+
+emds:InfrastructureManagement a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Infrastructure Management"@en ;
+    skos:definition "Planning, operation and maintenance of transport infrastructure."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "infrastructure-management" .
+
+emds:FleetManagement a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Fleet Management"@en ;
+    skos:definition "Management and optimisation of vehicle fleets and logistics assets."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "fleet-management" .
+
+emds:EnvironmentalMonitoring a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Environmental Monitoring"@en ;
+    skos:definition "Monitoring emissions, energy use, environmental impacts and sustainability indicators."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "environmental-monitoring" .
+
+emds:Research a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Scientific Research"@en ;
+    skos:definition "Non-commercial scientific research and academic studies."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "research" .
+
+emds:Innovation a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Innovation and Product Development"@en ;
+    skos:definition "Development and evaluation of new mobility products, services and technologies."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "innovation" .
+
+emds:ArtificialIntelligence a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Artificial Intelligence"@en ;
+    skos:definition "Training, validation, testing and evaluation of AI systems."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "artificial-intelligence" .
+
+emds:Simulation a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Simulation and Digital Twins"@en ;
+    skos:definition "Transport modelling, forecasting and digital twin applications."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "simulation" .
+
+emds:Statistics a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Statistical Analysis"@en ;
+    skos:definition "Production of aggregated statistics and analytical reporting."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "statistics" .
+
+emds:ComplianceAudit a skos:Concept ;
+    skos:inScheme emds:purposeScheme ;
+    skos:prefLabel "Compliance and Audit"@en ;
+    skos:definition "Regulatory compliance, certification and auditing activities."@en ;
+    emds:sourceSheet "Purpose"@en ;
+    emds:sourceCode "compliance-audit" .
+
+# ── Restrictions ────────────────────────────────────────────────────────
+
+emds:Redistribute a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "No Redistribution"@en ;
+    skos:definition "Data must not be shared with third parties."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "no-redistribution" .
+
+emds:RedistributeWithPriorAuthorisation a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Redistribution with Permission"@en ;
+    skos:definition "Redistribution is permitted only with prior authorisation from the data provider."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation", "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "redistribution-with-permission" .
+
+emds:RedistributeUnderSameTerms a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Redistribution Under Same Terms"@en ;
+    skos:definition "Redistribution is allowed only if the same usage conditions are applied to recipients."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation", "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "redistribution-same-terms" .
+
+emds:UseOutsideReceivingOrganisation a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Internal Use Only"@en ;
+    skos:definition "Data may only be processed within the receiving organisation."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "internal-use-only" .
+
+emds:RedistributeForCommercialPurpose a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "No Commercial Redistribution"@en ;
+    skos:definition "Redistribution for commercial purposes is prohibited."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "no-commercial-redistribution" .
+
+emds:DisclosePublicly a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "No Public Disclosure"@en ;
+    skos:definition "Data must not be made publicly available or published."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "no-public-disclosure" .
+
+emds:TrainAIModel a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "No AI Training"@en ;
+    skos:definition "Data must not be used to train or fine-tune AI or machine learning models."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "no-ai-training" .
+
+emds:ProcessOutsideTrustedExecutionEnvironment a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Trusted Execution Environment Only"@en ;
+    skos:definition "Processing only in trusted environments."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Obligation", "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "trusted-execution-only" .
+
+emds:ReverseEngineer a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "No Reverse Engineering"@en ;
+    skos:definition "Reverse engineering prohibited."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Prohibition" ;
+    emds:sourceSheet "Restrictions"@en ;
+    emds:sourceCode "no-reverse-engineering" .
+
+# ── Usage rights ────────────────────────────────────────────────────────
+
+emds:View a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "View"@en ;
+    skos:definition "The data may be viewed but not downloaded or processed."@en ;
+    emds:enforcementPoint "Connector "@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "view" .
+
+emds:UseData a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Use"@en ;
+    skos:definition "The data may be used for the authorised purpose(s)."@en ;
+    emds:enforcementPoint "Connector "@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    skos:closeMatch odrl:use ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "use" .
+
+emds:Copy a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Copy"@en ;
+    skos:definition "Copies of the data may be made for authorised use."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    skos:closeMatch odrl:reproduce ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "copy" .
+
+emds:Store a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Store"@en ;
+    skos:definition "The data may be stored for the authorised period."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "store" .
+
+emds:Adapt a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Adapt"@en ;
+    skos:definition "The data may be transformed or converted into another format."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission", "Prohibition" ;
+    skos:closeMatch odrl:derive ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "adapt" .
+
+emds:Combine a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Combine"@en ;
+    skos:definition "The data may be combined with other datasets."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission" ;
+    skos:closeMatch odrl:aggregate ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "combine" .
+
+emds:Analyse a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Analyse"@en ;
+    skos:definition "The data may be analysed to produce insights or statistics."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission" ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "analyse" .
+
+emds:PublishResults a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Publish Results"@en ;
+    skos:definition "Results, analyses, or reports derived from the data may be published, subject to applicable restrictions."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission", "Obligation" ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "publish-results" .
+
+emds:DelegateProcessing a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Delegate Processing"@en ;
+    skos:definition "Processing may be delegated to authorised processors or subcontractors."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission", "Obligation" ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "delegate-processing" .
+
+emds:AutomatedProcessing a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:label "Automated Processing"@en ;
+    skos:definition "The data may be processed by automated systems."@en ;
+    emds:enforcementPoint "Legal contract"@en ;
+    emds:typicalRuleType "Permission" ;
+    emds:sourceSheet "Usage rights"@en ;
+    emds:sourceCode "automated-processing" .
+
+# ── Fees and monetisation → emds:paymentModel ──────────────────────────
+
+emds:paymentModel a odrl:LeftOperand ;
+    rdfs:label "Payment Model"@en ;
+    rdfs:comment "Fee / monetisation model applying to the offer (Fees and monetisation sheet)."@en ;
+    emds:hasConceptScheme emds:paymentModelScheme .
+
+emds:paymentModelScheme a skos:ConceptScheme ;
+    rdfs:label "Payment Model values"@en .
+
+emds:FreeOfCharge a skos:Concept ;
+    skos:inScheme emds:paymentModelScheme ;
+    skos:prefLabel "Free of Charge"@en ;
+    skos:definition "No fee."@en ;
+    emds:sourceSheet "Fees and monetisation"@en ;
+    emds:sourceCode "free-of-charge" .
+
+emds:Subscription a skos:Concept ;
+    skos:inScheme emds:paymentModelScheme ;
+    skos:prefLabel "Subscription"@en ;
+    skos:definition "Recurring fee."@en ;
+    emds:sourceSheet "Fees and monetisation"@en ;
+    emds:sourceCode "subscription" .
+
+emds:PayPerUse a skos:Concept ;
+    skos:inScheme emds:paymentModelScheme ;
+    skos:prefLabel "Pay per Use"@en ;
+    skos:definition "Charge per use."@en ;
+    emds:sourceSheet "Fees and monetisation"@en ;
+    emds:sourceCode "pay-per-use" .
+
+emds:UsageBased a skos:Concept ;
+    skos:inScheme emds:paymentModelScheme ;
+    skos:prefLabel "Usage-based"@en ;
+    skos:definition "Charge by consumption."@en ;
+    emds:sourceSheet "Fees and monetisation"@en ;
+    emds:sourceCode "usage-based" .
+
+emds:NegotiatedFee a skos:Concept ;
+    skos:inScheme emds:paymentModelScheme ;
+    skos:prefLabel "Negotiated Fee"@en ;
+    skos:definition "Fee negotiated"@en ;
+    emds:sourceSheet "Fees and monetisation"@en ;
+    emds:sourceCode "negotiated-fee" .
+
+emds:CostRecovery a skos:Concept ;
+    skos:inScheme emds:paymentModelScheme ;
+    skos:prefLabel "Cost Recovery"@en ;
+    skos:definition "Cost recovery only."@en ;
+    emds:sourceSheet "Fees and monetisation"@en ;
+    emds:sourceCode "cost-recovery" .
+
+# ── Start and termination (access) ─────────────────────────────────────
+#
+# Start Date / End Date / Duration reuse core ODRL LeftOperands directly
+# (odrl:dateTime with operators lt/gt/lteq/gteq for Start/End Date; odrl:elapsedTime
+# for Duration) and so define no new profile terms.
+#
+
+emds:renewable a odrl:LeftOperand ;
+    rdfs:label "Renewable"@en ;
+    emds:sourceSheet "Start and termination (access)"@en ;
+    emds:sourceCode "renewable" .
+
+emds:noticePeriod a odrl:LeftOperand ;
+    rdfs:label "Notice Period"@en ;
+    emds:sourceSheet "Start and termination (access)"@en ;
+    emds:sourceCode "notice-period" .
+
+emds:reportingRequired a odrl:LeftOperand ;
+    rdfs:label "Reporting Required"@en ;
+    emds:sourceSheet "Start and termination (access)"@en ;
+    emds:sourceCode "reporting-required" .
+
+emds:reportingFrequency a odrl:LeftOperand ;
+    rdfs:label "Reporting Frequency"@en ;
+    emds:sourceSheet "Start and termination (access)"@en ;
+    emds:sourceCode "reporting-frequency" .
+
+emds:auditAllowed a odrl:LeftOperand ;
+    rdfs:label "Audit Allowed"@en ;
+    emds:sourceSheet "Start and termination (access)"@en ;
+    emds:sourceCode "audit-allowed" .
+
+emds:auditFrequency a odrl:LeftOperand ;
+    rdfs:label "Audit Frequency"@en ;
+    emds:sourceSheet "Start and termination (access)"@en ;
+    emds:sourceCode "audit-frequency" .
+
+emds:SubmitReport a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:comment "Duty to submit a report, gated by emds:reportingRequired / paced by emds:reportingFrequency."@en ;
+    emds:sourceSheet "Start and termination (access)"@en .
+
+emds:PermitAudit a rdfs:Class, owl:Class ;
+    rdfs:subClassOf odrl:Action ;
+    rdfs:comment "Duty to permit an audit, gated by emds:auditAllowed / paced by emds:auditFrequency."@en ;
+    emds:sourceSheet "Start and termination (access)"@en .
+
+# ── Support properties used above (profile bookkeeping, not ODRL core) ────
+
+emds:enforcementPoint a rdf:Property ;
+    rdfs:comment "Where the term is enforced: Connector (automatic) or Legal contract (contractual only), per the source spreadsheet."@en .
+
+emds:typicalRuleType a rdf:Property ;
+    rdfs:comment "ODRL rule type(s) (Permission / Prohibition / Obligation) the source spreadsheet lists this term under."@en .
+
+emds:reviewStatus a rdf:Property ;
+    rdfs:comment "WP2/WP3 implementation status at time of extraction: Implemented / Essential / Nice to have / not necessary."@en .
+
+emds:sourceSheet a rdf:Property ;
+    rdfs:comment "Name of the source spreadsheet sheet this term was extracted from."@en .
+
+emds:sourceCode a rdf:Property ;
+    rdfs:comment "Code (spreadsheet column A value) this term was extracted from, for traceability."@en .
+
+emds:group a rdf:Property ;
+    rdfs:comment "Sub-grouping of related LeftOperand terms (e.g. participant-credential-claim)."@en .
+
+emds:hasConceptScheme a rdf:Property ;
+    rdfs:comment "Links an enumeration LeftOperand to its skos:ConceptScheme of candidate rightOperand values."@en .
